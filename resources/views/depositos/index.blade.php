@@ -2,27 +2,6 @@
 
 @section('content')
     <div class="row">
-
-        <div class="col-12">
-            @if(session('success'))
-                <div class="alert alert-success alert-dismissible fade show">
-                    <div>{{ session('success') }}</div>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
-
-            @if ($errors->any())
-                <div class="alert alert-danger alert-dismissible fade show">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
-        </div>
-
         <div class="col-6">
             <h1>Lista de Depósitos</h1>
         </div>
@@ -45,6 +24,7 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @if(count($depositos))
                             @foreach($depositos as $deposito)
                                 <tr>
                                     <td>
@@ -71,6 +51,11 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            @else
+                                <tr>
+                                    <td class="text-center text-info" colspan="5">No se encontraron registros.</td>
+                                </tr>
+                            @endif
                             </tbody>
                         </table>
                     </div>
